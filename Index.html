@@ -1,0 +1,680 @@
+---
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría de Florence Nightingale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #4ab8d4;
+    --azul-oscuro: #1a6fa8;
+    --teal: #2e9e8f;
+    --crema: #f0f8fb;
+    --blanco: #ffffff;
+    --gris: #5a7080;
+    --gris-claro: #d6eaf3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--crema);
+    color: #2c3e50;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #d6f0f8 0%, #eaf7fb 40%, #c8eaf5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,184,212,0.15) 0%, transparent 70%);
+    top: -100px; left: -150px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,158,143,0.12) 0%, transparent 70%);
+    bottom: -80px; right: -100px;
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .lantern-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--azul);
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 1rem;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero .subtitulo {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gris);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1.2rem;
+    animation: fadeUp 1s 0.3s ease both;
+    backdrop-filter: blur(4px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECCIONES ── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--azul);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: var(--gris);
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+  .card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 4px 24px rgba(74,184,212,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--azul);
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(74,184,212,0.2);
+  }
+
+  .card .icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.6rem;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--azul), var(--teal));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.1rem;
+    top: 0.4rem;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--azul);
+    border: 3px solid var(--blanco);
+    box-shadow: 0 0 0 3px var(--azul);
+  }
+
+  .timeline-year {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #2c3e50;
+  }
+
+  /* ── ANTES/DESPUÉS ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .comparison { grid-template-columns: 1fr; }
+  }
+
+  .comparison-box {
+    padding: 2rem;
+    border-radius: 20px;
+  }
+
+  .antes {
+    background: linear-gradient(135deg, #fff0f0, #ffe8e8);
+    border-left: 5px solid #e07070;
+  }
+
+  .despues {
+    background: linear-gradient(135deg, #e8f8f5, #d5f5ee);
+    border-left: 5px solid var(--teal);
+  }
+
+  .comparison-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .antes h3 { color: #c0392b; }
+  .despues h3 { color: var(--teal); }
+
+  .comparison-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comparison-box ul li {
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    color: #444;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  /* ── FUNDAMENTOS ── */
+  .fundamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .fund-item {
+    background: var(--blanco);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(74,184,212,0.1);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid var(--gris-claro);
+  }
+
+  .fund-item:hover {
+    border-bottom-color: var(--azul);
+    transform: translateY(-4px);
+  }
+
+  .fund-item .emoji { font-size: 2rem; display: block; margin-bottom: 0.7rem; }
+  .fund-item span { font-size: 0.9rem; color: var(--gris); font-weight: 400; }
+
+  /* ── CASO / QUOTE ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--teal));
+    color: white;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    font-size: 10rem;
+    font-family: 'Playfair Display', serif;
+    opacity: 0.15;
+    line-height: 1;
+  }
+
+  .highlight-box p { color: rgba(255,255,255,0.9); font-size: 1.1rem; line-height: 1.9; }
+  .highlight-box .quote-author {
+    margin-top: 1.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+  }
+
+  /* ── CRÍTICAS ── */
+  .critica-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .critica-item {
+    background: white;
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    border-left: 4px solid var(--azul);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    color: #3a4a55;
+    line-height: 1.7;
+  }
+
+  /* ── IMPACTO STAT ── */
+  .stat-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 160px;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(74,184,212,0.12);
+  }
+
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--azul);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat .desc {
+    font-size: 0.85rem;
+    color: var(--gris);
+    margin-top: 0.4rem;
+  }
+
+  /* ── SEPARADOR ── */
+  .divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--azul), var(--teal));
+    border-radius: 2px;
+    margin: 1rem 0 2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--teal));
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  footer h2 {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  footer p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+
+  /* ── ALT BACKGROUND SECTIONS ── */
+  .bg-white { background: white; }
+  .bg-white section { /* no extra bg */ }
+  .full-bg { background: white; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(240,248,251,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(74,184,212,0.2);
+  }
+
+  nav .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--azul-oscuro);
+    font-weight: 700;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-size: 0.8rem;
+    color: var(--gris);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav .nav-links a:hover { color: var(--azul); }
+
+  @media (max-width: 600px) {
+    nav .nav-links { display: none; }
+    .hero { padding-top: 5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🕯 Florence Nightingale</div>
+  <ul class="nav-links">
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="#fundamentos">Fundamentos</a></li>
+    <li><a href="#impacto">Impacto</a></li>
+    <li><a href="#criticas">Críticas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="lantern-icon">🏮</div>
+  <h1>Teoría de Florence Nightingale para el Cuidado de Enfermería</h1>
+  <div class="subtitulo">Universidad Interamericana de Panamá · Licenciatura en Enfermería</div>
+</div>
+
+<!-- BIOGRAFÍA -->
+<div id="historia">
+<section>
+  <div class="section-label">Pionera</div>
+  <h2>Florence Nightingale<br>(1820 – 1910)</h2>
+  <div class="divider"></div>
+  <p>Nació en Florencia, Italia, en el seno de una familia británica acomodada. Desde joven mostró vocación por el cuidado de los enfermos, formándose en enfermería en Europa contra la voluntad de su familia. Durante la <strong>Guerra de Crimea (1854–1856)</strong>, lideró un equipo de enfermeras en hospitales militares, reduciendo drásticamente la mortalidad mediante higiene y organización del entorno.</p>
+  <br>
+  <p>En <strong>1860</strong> fundó la Escuela de Enfermería Nightingale en Londres, sentando las bases de la enfermería como profesión científica y humanista.</p>
+</section>
+</div>
+
+<!-- TIMELINE -->
+<div class="full-bg" style="background:#f0f8fb; padding: 1rem 0;">
+<section>
+  <div class="section-label">Línea de Tiempo</div>
+  <h2>Contexto Histórico</h2>
+  <div class="divider"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1820</div>
+      <div class="timeline-text">Nacimiento de Florence Nightingale en Florencia, Italia.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1854 – 1856</div>
+      <div class="timeline-text">Intervención en la Guerra de Crimea; reduce la mortalidad con higiene y organización del entorno.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1860</div>
+      <div class="timeline-text">Funda la Escuela de Enfermería Nightingale en Londres.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1860</div>
+      <div class="timeline-text">Publica <em>Notas sobre Enfermería</em>, base teórica del cuidado.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Siglo XX</div>
+      <div class="timeline-text">Evolución y profesionalización de la enfermería moderna basada en sus principios.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FUNDAMENTOS -->
+<div id="fundamentos">
+<section>
+  <div class="section-label">Teoría</div>
+  <h2>Fundamentos de la Teoría</h2>
+  <div class="divider"></div>
+  <p>Nightingale planteó el <strong>ambiente</strong> como factor determinante en la salud del paciente, identificando seis pilares esenciales para el cuidado:</p>
+  <div class="fundamentos-grid">
+    <div class="fund-item"><span class="emoji">🧹</span><span>Higiene y limpieza</span></div>
+    <div class="fund-item"><span class="emoji">🥗</span><span>Nutrición adecuada</span></div>
+    <div class="fund-item"><span class="emoji">🌬️</span><span>Aire y ventilación</span></div>
+    <div class="fund-item"><span class="emoji">☀️</span><span>Luz natural</span></div>
+    <div class="fund-item"><span class="emoji">😴</span><span>Descanso y tranquilidad</span></div>
+    <div class="fund-item"><span class="emoji">🏥</span><span>Ambiente saludable</span></div>
+  </div>
+</section>
+</div>
+
+<!-- CONCEPTOS CLAVE -->
+<div style="background: #f0f8fb; padding: 1rem 0;">
+<section>
+  <div class="section-label">Conceptos Clave</div>
+  <h2>Principios del Cuidado</h2>
+  <div class="divider"></div>
+  <div class="card-grid card-grid-2">
+    <div class="card">
+      <div class="icon">🏨</div>
+      <h3>Ambiente saludable</h3>
+      <p>El entorno físico del paciente debe favorecer activamente su recuperación y bienestar.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🧼</div>
+      <h3>Prevención de infecciones</h3>
+      <p>La higiene rigurosa es el principal escudo contra las infecciones hospitalarias.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>Observación y registro</h3>
+      <p>El seguimiento continuo y documentado de signos y síntomas es esencial para el cuidado.</p>
+    </div>
+    <div class="card">
+      <div class="icon">👩‍⚕️</div>
+      <h3>Cuidado holístico</h3>
+      <p>La enfermera tiene un rol activo en el entorno clínico, con un enfoque integral del paciente.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ANTES Y DESPUÉS -->
+<section>
+  <div class="section-label">Transformación</div>
+  <h2>Antes y Después de Nightingale</h2>
+  <div class="divider"></div>
+  <div class="comparison">
+    <div class="comparison-box antes">
+      <h3>❌ Antes</h3>
+      <ul>
+        <li>⚠️ Prácticas sin base científica</li>
+        <li>⚠️ Malas condiciones sanitarias</li>
+        <li>⚠️ Alta mortalidad hospitalaria</li>
+        <li>⚠️ Enfermería no profesionalizada</li>
+        <li>⚠️ Sin registros ni protocolos</li>
+      </ul>
+    </div>
+    <div class="comparison-box despues">
+      <h3>✅ Después</h3>
+      <ul>
+        <li>✔ Enfoque científico del cuidado</li>
+        <li>✔ Higiene rigurosa y sistemática</li>
+        <li>✔ Ambiente saludable controlado</li>
+        <li>✔ Profesionalización de enfermería</li>
+        <li>✔ Registro detallado del paciente</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<div id="impacto" style="background: #f0f8fb; padding: 1rem 0;">
+<section>
+  <div class="section-label">Legado</div>
+  <h2>Impacto en la Enfermería Moderna</h2>
+  <div class="divider"></div>
+  <div class="stat-row">
+    <div class="stat">
+      <span class="num">70%</span>
+      <span class="desc">Reducción de infecciones hospitalarias gracias a prácticas higiénicas</span>
+    </div>
+    <div class="stat">
+      <span class="num">1860</span>
+      <span class="desc">Año en que sentó las bases de la enfermería científica moderna</span>
+    </div>
+    <div class="stat">
+      <span class="num">Global</span>
+      <span class="desc">El control del ambiente clínico es hoy un estándar mundial</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CASO DE ESTUDIO -->
+<section>
+  <div class="section-label">Aplicación Práctica</div>
+  <h2>Caso de Estudio en Hospital</h2>
+  <div class="divider"></div>
+  <div class="highlight-box">
+    <p>Un paciente postoperatorio en sala con <strong>ventilación deficiente</strong> y escasa luz natural presentaba lenta recuperación e infecciones recurrentes. Al aplicar la teoría de Nightingale — mejorando ventilación, iluminación, higiene y orden del entorno — se observó <strong>reducción de infecciones, menor estancia hospitalaria</strong> y mejor estado anímico del paciente.</p>
+    <p class="quote-author">Este caso evidencia que el ambiente saludable es determinante en la recuperación.</p>
+  </div>
+</section>
+
+<!-- CRÍTICAS -->
+<div id="criticas" style="background: #f0f8fb; padding: 1rem 0;">
+<section>
+  <div class="section-label">Análisis Crítico</div>
+  <h2>Críticas y Limitaciones</h2>
+  <div class="divider"></div>
+  <div class="critica-list">
+    <div class="critica-item">⚡ Enfoque muy centrado en el <strong>ambiente físico</strong>, con menor atención a aspectos emocionales y psicosociales del paciente.</div>
+    <div class="critica-item">⚡ Presenta limitaciones frente a <strong>enfermedades complejas modernas</strong> que requieren intervenciones más allá del entorno.</div>
+    <div class="critica-item">⚡ Necesidad de integración con <strong>otras teorías y enfoques contemporáneos</strong> de enfermería para un cuidado completo.</div>
+  </div>
+</section>
+</div>
+
+<!-- CONCLUSIONES -->
+<section>
+  <div class="section-label">Cierre</div>
+  <h2>Conclusiones</h2>
+  <div class="divider"></div>
+  <div class="card-grid card-grid-3">
+    <div class="card">
+      <div class="icon">🔬</div>
+      <h3>Base científica</h3>
+      <p>La teoría de Nightingale sentó los cimientos de la enfermería como disciplina científica.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌿</div>
+      <h3>Ambiente esencial</h3>
+      <p>El entorno es un factor determinante para la salud y recuperación del paciente.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🕯</div>
+      <h3>Legado vigente</h3>
+      <p>Sus principios perduran en la práctica clínica y formación enfermera actual.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2>🏮 Reflexión Final</h2>
+  <br>
+  <p style="font-size:1.15rem; color:white; font-style: italic; font-family: 'Playfair Display', serif;">"La enfermería es un acto de amor y ciencia."</p>
+  <p style="margin-top:0.4rem; font-size:0.9rem;">— Florence Nightingale</p>
+  <br><br>
+  <p>Como profesionales de enfermería, tenemos la responsabilidad de aplicar estos principios en cada acto de cuidado, transformando el entorno y la vida de nuestros pacientes.</p>
+  <br>
+  <p style="font-size:0.8rem; opacity:0.6;">Universidad Interamericana de Panamá · Licenciatura en Enfermería</p>
+</footer>
+
+</body>
+</html>
